@@ -1,95 +1,165 @@
 # Doubly Linked List (STL Style) Implementation
 
-### PROGRAM DESCRIPTION -- Implement a templated linked list class, along with an associated iterator class for helping with generic container traversals
+### PROGRAM DESCRIPTION -- Implementation of aemplated (doubly) linked list class. Additionally, implement an associated iterator class to help with generic container traversals.
 
-## Member functions of nested const_iterator class:
-
-const_iterator(): default zero-parameter constructor. Set pointer current to nullptr.
-
-operator*(): returns a reference to the corresponding element in the list by calling retrieve() member function.
-
-operator++(), operator++(int), operator--(), operator--(int): prefix and postfix increment and decrement operators.
-
-operator==() and operator!=(): two iterators are equal if they refer to the same element.
-
-retrieve(): return a reference to the corresponding element in the list.
-
-const_iterator(Node *p): one-parameter constructor. Set pointer current to the given node pointer p.
-
-## Member functions of nested iterator class:
-
-iterator(): default zero-parameter constructor.
-
-operator*(): returns a reference to the corresponding element in the list by calling retrieve() member function.
-
-operator++(), operator++(int), operator--(), operator--(int): prefix and postfix increment and decrement operators.
-
-iterator(Node *p): one-parameter constructor.
+## DOUBLY LINKED LIST CLASS --
+------------------------------------------------------------------------------------------------------
 
 ## Member functions of List class template 
 
-List(): Default zero-parameter constructor. Call init() to initialize list member variables.
+List()
+- 0 parameter default constructor, which calls init() for proper initialization of list member variables
 
-List(const List &rhs): Copy constructor. Create the new list using elements in existing list rhs.
+List(const List &rhs)
+- Copy constructor, which creates a new list identical to List rhs
 
-List(List &&rhs): move constructor.
+List(List &&rhs) 
+- Move constructor (for efficiency -- "steal" the resources held by a List that is about to be destroyed by the compiler, rather than creating a copy of it)
 
-List(int num, const T & val = T()): Construct a list with num elements, all initialized with value val.
+List(int num, const T & val = T())
+- ADDITIONAL CONSTRCUTOR, creates a List of size num with ALL elements initialized to value val
 
-List(const_iterator start, const_iterator end): construct a List with elements from another list between start and end. Including the element referred to by the start iterator, but not the end iterator, that is [start, end).
+List(const_iterator start, const_iterator end)
+- ADDITIONAL CONSTRUCTOR, creates a List with elements from an ALREADY_EXISTING list, btwn a start element and end element of that provided list (function expects two const_iterator objects to determine these start & end elements). Includes the element referred to by the start iterator, but NOT the end iterator: [start, end)
 
-List(std::initializer_list<T> iList) : construct a List with elements from the initializer list that is passed in. Note that this will allow declarations like this:
-     List<int> myList {2, 4, 6, 8, 10, 12, 14, 16};
+List(std::initializer_list<T> iList)
+- ADDITIONAL CONSTRUCTOR, creates a List with elements from a provided initializer list. Allows declarations such as below:
+     List<int> newList {3, 6, 9, 12, 15, 18, 21, 24};
   
-~List(): destructor. You should properly reclaim all dynamically allocated memory
+~List()
+- DESTRUCTOR, must properly release all dynamically-allocated memory
 
-operator=(List &rhs): copy assignment operator
+operator=(List &rhs) 
+- copy assignment operator
 
-operator=(List &&rhs): move assignment operator
+operator=(List &&rhs) 
+- move assignment operator (for greater program efficiency)
 
-operator=(std::initializer_list<T> iList) : assign the initializer list data to be the calling object's new data. Example call:
-     list2 = {1, 3, 5, 7, 9, 11, 13, 15};
+operator=(std::initializer_list<T> iList) 
+- Assigns an initializer list of T data to be the new of data of a calling object
+     I.e.
+           example_list = {0, 2, 4, 6, 8, 10, 12, 14};
   
-size(): return the number of elements in the List.
+size()
+- Return List size, or num of elements
 
-empty(): return true if no element is in the list; otherwise, return false.
+empty()
+- If no elements in List, return true; else, return false
 
-clear(): delete all the elements in the list
+clear() 
+- DELETE all list elements
 
-reverse(): reverse the order of the elements in the list. That is, the original first element becomes the last, while the original last becomes the first.
+reverse() 
+- reverse the order of a List object
 
-front() and back(): return reference to the first and last element in the list, respectively.
+front()
+- return reference to the FIRST element in a List object
+     
+ back()
+- return reference to LAST element in a List object
 
-push_front() and push_back(), insert the new object as the first and last element into the list, respectively; and their move versions.
+push_front() 
+- insert new object as the FIRST element in a List object
 
-pop_front() and pop_back(), delete the first and last element in the list, respectively.
+push_front(T && val)     
+- MOVE VERSION of push_front()
+     
+push_back()
+- insert new object as the LAST element in a List object
 
-remove(const T & val): delete all nodes with value equal to val from the list.
+push_front(T && val)     
+- MOVE VERSION of push_back()
 
-remove_if(PREDICATE pred): delete all nodes for which pred returns true. PREDICATE is a template type, allowing a function object to be passed. (i.e. a true/false condition/function can be passed in via the functor).
+pop_front() 
+- delete the FIRST element in a List object
 
-print(ostream &os, char ofc = ' '): print all elements in the list, using character ofc as the deliminator between elements in the list.
+pop_back()
+- delete the LAST element in a List object
 
-begin(): return iterator to the first element in the list.
+remove(const T & val)
+- delete ALL nodes with value val from a List object
 
-end(): return iterator to the end marker of the list (tail).
+remove_if(PREDICATE pred)
+- delete ALL nodes for which PREDICATE pred returns true. 
+     - PREDICATE is a template type, allowing a FUNCTION OBJECT to be passed as a parameter (This might include true/false conditions or others functions passed in        via the functor)
 
-insert(iterator itr, const T & val): insert value val ahead of the node referred to by itr; and its move version
+print(ostream &os, char ofc = ' ')
+- prints a List object, from first element to last element. Char ofc is the deliminator btwn List elements, dependent upon valid operator overloading
 
-erase(iterator itr): delete node referred to by itr. The return value is an iterator to the following node.
+begin()
+- Returns an ITERATOR to the FIRST element in a List object
 
-erase(iterator start, iterator end): delete all nodes between start and end (including start but not end), that is, all elements in the range [start, end).
+end()
+- return an ITERATOR to the MARKER of a List object (the TAIL)
 
-init(): initialize the member variables of list.
+insert(iterator itr, const T & val)
+- Inserts a value val IN FRONT OF of the node referred to by iterator itr
 
-## Non-class functions 
+insert(iterator itr, T && val)
+- MOVE VERSION OF insert()
+     
+erase(iterator itr)
+- Delete the node referred to by iterator itr. Returns the FOLLOWING node
 
-operator==(const List<T> & lhs, const List<T> & rhs): check if two lists contain the same sequence of elements. Two lists are equal if they have the same number of elements and the elements at the corresponding position are equal.
+erase(iterator start, iterator end)
+- Delete ALL nodes btwn start and end (including start but NOT end) as read by iterator arguments
 
-operator!=(const List<T> & lhs, const List<T> & rhs): opposite of operator==().
+init()
+- Helper function to INITIALIZE member variables of a List
+     
 
-operator<<(ostream & os, const List<T> & l): print out all elements in list l by calling List<T>::print() function. 
-  
+## NON-CLASS FUNCS --
+-----------------------------------------------------------------------------------------------------
+
+operator==(const List<T> & lhs, const List<T> & rhs)
+- check if two lists contain the same sequence of elements. Two lists are equal if they have the same number of elements and the elements at the corresponding position are equal.
+
+operator!=(const List<T> & lhs, const List<T> & rhs)
+- opposite of operator==().
+
+operator<<(ostream & os, const List<T> & l)
+- print out all elements in list l by calling List<T>::print() function. 
+     
+
+## NESTED ITERATOR CLASSES --
+-----------------------------------------------------------------------------------------------------
+
+## Member funcs of nested const_iterator class:
+
+const_iterator()
+- 0 parameter default constructor, which sets ptr current to null
+
+operator*()
+- REFERENCE OPERATOR OVERLOAD, implementated to facilitate functionality of retrieve() member func
+
+operator++(int), operator++(), operator--(int), operator--()
+- prefix and postfix increment and decrement OPERATOR OVERLOADS
+
+operator==() and operator!=()
+- equal and not equal OPERATOR OVERLOADS
+
+retrieve()
+- returns a REFERENCE the corresponding list element
+
+const_iterator(Node *p)
+- ADDITIONAL CONSTRUCTOR of 1 parameter, which set ptr current to provided node ptr p
+
+     
+## Member funcs of nested iterator class:
+
+iterator()
+- 0 parameter default constructor
+
+operator*()
+- REFERENCE OPERATOR OVERLOAD, implementated to facilitate functionality of retrieve() member func
+
+operator++(), operator++(int), operator--(), operator--(int): 
+- prefix and postfix increment and decrement OPERATOR OVERLOADS
+
+iterator(Node *p): 
+- ADDITIONAL CONSTRUCTOR of 1 parameter
+
+
 
 ## REPOSITORY CONTENTS
 - List.h

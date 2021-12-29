@@ -1,11 +1,10 @@
 # Doubly Linked List (STL Style) Implementation
 
-### PROGRAM DESCRIPTION -- Implementation of aemplated (doubly) linked list class. Additionally, implement an associated iterator class to help with generic container traversals.
+### PROGRAM DESCRIPTION -- Implementation of templated (doubly) linked list class. Additionally, implement an associated iterator class to help with generic container traversals.
 
 ## DOUBLY LINKED LIST CLASS --
 
 ### Member functions of List class template 
------------------------------------------------------------------------------------------------------
 
 List()
 - 0 parameter default constructor, which calls init() for proper initialization of list member variables
@@ -109,7 +108,6 @@ init()
      
 
 ### NON-CLASS FUNCS --
------------------------------------------------------------------------------------------------------
 
 operator==(const List<T> & lhs, const List<T> & rhs)
 - check if two lists contain the same sequence of elements. Two lists are equal if they have the same number of elements and the elements at the corresponding position are equal.
@@ -122,7 +120,6 @@ operator<<(ostream & os, const List<T> & l)
      
 
 ### NESTED ITERATOR CLASSES --
------------------------------------------------------------------------------------------------------
 
 ### Member funcs of nested const_iterator class:
 

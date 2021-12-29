@@ -3,9 +3,9 @@
 ### PROGRAM DESCRIPTION -- Implementation of aemplated (doubly) linked list class. Additionally, implement an associated iterator class to help with generic container traversals.
 
 ## DOUBLY LINKED LIST CLASS --
-------------------------------------------------------------------------------------------------------
 
-## Member functions of List class template 
+### Member functions of List class template 
+-----------------------------------------------------------------------------------------------------
 
 List()
 - 0 parameter default constructor, which calls init() for proper initialization of list member variables
@@ -108,7 +108,7 @@ init()
 - Helper function to INITIALIZE member variables of a List
      
 
-## NON-CLASS FUNCS --
+### NON-CLASS FUNCS --
 -----------------------------------------------------------------------------------------------------
 
 operator==(const List<T> & lhs, const List<T> & rhs)
@@ -121,10 +121,10 @@ operator<<(ostream & os, const List<T> & l)
 - print out all elements in list l by calling List<T>::print() function. 
      
 
-## NESTED ITERATOR CLASSES --
+### NESTED ITERATOR CLASSES --
 -----------------------------------------------------------------------------------------------------
 
-## Member funcs of nested const_iterator class:
+### Member funcs of nested const_iterator class:
 
 const_iterator()
 - 0 parameter default constructor, which sets ptr current to null
@@ -145,7 +145,7 @@ const_iterator(Node *p)
 - ADDITIONAL CONSTRUCTOR of 1 parameter, which set ptr current to provided node ptr p
 
      
-## Member funcs of nested iterator class:
+### Member funcs of nested iterator class:
 
 iterator()
 - 0 parameter default constructor

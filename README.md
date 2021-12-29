@@ -2,7 +2,7 @@
 
 ### PROGRAM DESCRIPTION -- Implementation of templated (doubly) linked list class. Additionally, implement an associated iterator class to help with generic container traversals.
 
-## DOUBLY LINKED LIST CLASS --
+## DOUBLY LINKED LIST CLASS BREAKDOWN--
 
 ### Member functions of List class template 
 

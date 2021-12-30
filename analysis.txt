@@ -1,0 +1,13 @@
+Zach Duncan
+
+Worst Case Run-time Complexities:
+
+reverse(): O(n)
+	reverse() will traverse through a List<T> performing two functions
+	each iteration (2n) and will then traverse through a List<T> a
+	second time to copy temp to *this (n). We are looking at a worst
+	case of 3n (plus a few), which ultimately boils down to O(n).
+
+remove_if(): O(n)
+	remove_if() ultimately just traverses through a List<T> one time,
+	with a few extra lower-order effects, giving it a worst case of 0(n).
